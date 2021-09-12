@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.xjbpm.ultron.id.generator.IdGeneratorAutoConfig
