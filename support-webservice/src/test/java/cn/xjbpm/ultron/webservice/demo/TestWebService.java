@@ -6,7 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService
+@WebService(serviceName = "testWebService", targetNamespace = "demo.webservice.ultron.xjbpm.cn")
 public interface TestWebService {
 
 	/**

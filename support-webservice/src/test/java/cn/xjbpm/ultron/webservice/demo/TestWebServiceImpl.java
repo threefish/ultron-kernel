@@ -1,14 +1,15 @@
 package cn.xjbpm.ultron.webservice.demo;
 
 import cn.xjbpm.common.vo.JsonResultVO;
-import cn.xjbpm.ultron.webservice.annotation.WebServiceProvider;
 import org.springframework.stereotype.Service;
+
+import javax.jws.WebService;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
  */
 @Service
-@WebServiceProvider(serviceName = "testService")
+@WebService(serviceName = "testWebService", targetNamespace = "demo.webservice.ultron.xjbpm.cn")
 public class TestWebServiceImpl implements TestWebService {
 
 	@Override

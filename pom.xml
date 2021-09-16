@@ -66,7 +66,7 @@
         <!--   lombok 和  mapstruct 不能任意升级（存在一一匹配的情况，单一升级后将导致异常）    -->
         <lombok.version>1.18.12</lombok.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-        <spring-javaformat-checkstyle.version>0.0.27</spring-javaformat-checkstyle.version>
+        <spring-javaformat-checkstyle.version>0.0.28</spring-javaformat-checkstyle.version>
     </properties>
 
     <dependencies>
@@ -365,12 +365,12 @@
     <!-- 配置远程发布到私服，mvn deploy -->
     <distributionManagement>
         <repository>
-            <id>maven-releases</id>
-            <url>http://www.xjbpm.cn:8081/repository/maven-releases/</url>
+            <id>xjbpm-release</id>
+            <url>http://www.xjbpm.cn:8081/repository/maven-public/</url>
             <uniqueVersion>true</uniqueVersion>
         </repository>
         <snapshotRepository>
-            <id>maven-snapshots</id>
+            <id>xjbpm-snapshots</id>
             <url>http://www.xjbpm.cn:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>

@@ -14,6 +14,9 @@ import org.springframework.web.context.ContextLoader;
 
 import java.lang.annotation.Annotation;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
@@ -218,6 +221,24 @@ public class BeanContextUtil implements ApplicationContextAware {
 	 */
 	public static void publishAsyncEvent(Object event) {
 		BusinessCommonTaskExecutorContextHolder.execute(() -> applicationContext.publishEvent(event));
+		try {
+			final Object o = BusinessCommonTaskExecutorContextHolder.submit(new Runnable() {
+				@Override
+				public void run() {
+
+				}
+			}).get(10, TimeUnit.SECONDS);
+
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		catch (TimeoutException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

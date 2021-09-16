@@ -15,12 +15,8 @@ import java.util.concurrent.Future;
  */
 public abstract class BusinessCommonTaskExecutorContextHolder {
 
-	private static final ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
-	static {
-		threadPoolTaskExecutor = BeanContextUtil.getBeanOfNameAndType(TaskExecutorBeanNameConstant.BUSINESS_COMMON,
-				ThreadPoolTaskExecutor.class);
-	}
+	private static final ThreadPoolTaskExecutor threadPoolTaskExecutor = BeanContextUtil
+			.getBeanOfNameAndType(TaskExecutorBeanNameConstant.BUSINESS_COMMON, ThreadPoolTaskExecutor.class);
 
 	public static void execute(Runnable runnable) {
 		threadPoolTaskExecutor.execute(TtlRunnable.get(runnable));

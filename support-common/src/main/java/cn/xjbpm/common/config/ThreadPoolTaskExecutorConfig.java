@@ -107,7 +107,8 @@ public class ThreadPoolTaskExecutorConfig implements AsyncConfigurer {
 	 */
 	@Bean
 	public TaskExecutorCustomizer taskExecutorCustomizer() {
-		return executor -> executor.setThreadNamePrefix("定时任务线程池,已被覆盖，默认这里是不会有任何执行记录");
+		// 定时任务线程池,已被覆盖，默认这里是不会有任何执行记录,如果出现了那么就是未正确覆盖
+		return executor -> executor.setThreadNamePrefix("DufaualtTimedTaskThreadPool-");
 	}
 
 	private ThreadPoolTaskExecutor buildThreadPoolTaskExecutor(String threadNamePrefix) {

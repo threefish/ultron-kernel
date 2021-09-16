@@ -21,14 +21,10 @@ import java.lang.reflect.Type;
 @UtilityClass
 public class JsonUtil {
 
-	private static final ObjectMapper OBJECT_MAPPER;
-
-	static {
-		OBJECT_MAPPER = new ObjectMapper().registerModule(new Jdk8Module()).registerModule(new JavaTimeModule())
-				.setSerializationInclusion(JsonInclude.Include.NON_NULL)
-				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-				.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-	}
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new Jdk8Module())
+			.registerModule(new JavaTimeModule()).setSerializationInclusion(JsonInclude.Include.NON_NULL)
+			.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+			.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
 	/**
 	 * json到对象
