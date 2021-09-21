@@ -14,8 +14,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author 黄川 huchuc@vip.qq.com 2021/2/16 表示当前api是管理系统前端调用的专用api
- * 表示当前整个controller里面的api是需要登录后才能访问
+ * @author 黄川 huchuc@vip.qq.com 2021/2/16 表示当前整个controller里面的api是需要登录后才能访问
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

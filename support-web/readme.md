@@ -11,4 +11,5 @@ ultron:
         allowedOrigins: "*"
         allowedMethods: "*"
         allowedHeaders: "*"
+        allowCredentials: true
 ```

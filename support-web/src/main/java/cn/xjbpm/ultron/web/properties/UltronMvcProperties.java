@@ -30,6 +30,11 @@ public class UltronMvcProperties {
 	 */
 	private Xss xss = new Xss();
 
+	/**
+	 * web接口安全
+	 */
+	private Boolean webApiSecurity = true;
+
 	@Data
 	public class Xss {
 

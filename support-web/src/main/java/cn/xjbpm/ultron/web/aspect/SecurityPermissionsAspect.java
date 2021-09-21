@@ -8,7 +8,9 @@ import cn.xjbpm.common.util.spel.SpELUtil;
 import cn.xjbpm.common.vo.OperatorUserVO;
 import cn.xjbpm.ultron.web.annotation.GenerateMenuGroup;
 import cn.xjbpm.ultron.web.annotation.SecurityPermissions;
+import cn.xjbpm.ultron.web.properties.UltronMvcProperties;
 import cn.xjbpm.ultron.web.util.GenerateMenuUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -30,7 +32,10 @@ import java.util.stream.Stream;
 @Order(50)
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class SecurityPermissionsAspect {
+
+	private final UltronMvcProperties ultronMvcProperties;
 
 	@Pointcut("@annotation(securityPermissions)")
 	public void pointCut(SecurityPermissions securityPermissions) {
@@ -39,26 +44,29 @@ public class SecurityPermissionsAspect {
 	@Around("pointCut(securityPermissions)")
 	public Object around(ProceedingJoinPoint proceedingJoinPoint, SecurityPermissions securityPermissions)
 			throws Throwable {
-		OperatorUserVO operator = LoginUserUtil.getOperator();
-		if (Objects.nonNull(operator) && CollUtil.isNotEmpty(operator.getPermissions())) {
-			Class<?> declaringType = proceedingJoinPoint.getTarget().getClass();
-			Map<String, Object> stringObjectMap = GenerateMenuUtil
-					.buildContext(declaringType.getAnnotation(GenerateMenuGroup.class));
-			List<String> value = Stream.of(securityPermissions.value())
-					.map(permission -> SpELUtil.parseValueToString(stringObjectMap, permission))
-					.collect(Collectors.toList());
-			boolean hasPermissions;
-			if (securityPermissions.logic() == SecurityPermissions.Logic.OR) {
-				hasPermissions = value.stream().anyMatch(operator.getPermissions()::contains);
+		if (ultronMvcProperties.getWebApiSecurity()) {
+			OperatorUserVO operator = LoginUserUtil.getOperator();
+			if (Objects.nonNull(operator) && CollUtil.isNotEmpty(operator.getPermissions())) {
+				Class<?> declaringType = proceedingJoinPoint.getTarget().getClass();
+				Map<String, Object> stringObjectMap = GenerateMenuUtil
+						.buildContext(declaringType.getAnnotation(GenerateMenuGroup.class));
+				List<String> value = Stream.of(securityPermissions.value())
+						.map(permission -> SpELUtil.parseValueToString(stringObjectMap, permission))
+						.collect(Collectors.toList());
+				boolean hasPermissions;
+				if (securityPermissions.logic() == SecurityPermissions.Logic.OR) {
+					hasPermissions = value.stream().anyMatch(operator.getPermissions()::contains);
+				}
+				else {
+					hasPermissions = value.stream().allMatch(operator.getPermissions()::contains);
+				}
+				if (hasPermissions) {
+					return proceedingJoinPoint.proceed();
+				}
 			}
-			else {
-				hasPermissions = value.stream().allMatch(operator.getPermissions()::contains);
-			}
-			if (hasPermissions) {
-				return proceedingJoinPoint.proceed();
-			}
+			throw new BusinessSilenceException(HttpStatusExceptionEnum.PERMISSION_DENY);
 		}
-		throw new BusinessSilenceException(HttpStatusExceptionEnum.PERMISSION_DENY);
+		return proceedingJoinPoint.proceed();
 	}
 
 }
