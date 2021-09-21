@@ -22,6 +22,6 @@ public @interface QuerySorts {
 	 * 允许进行排序的字段白名单（java字段）
 	 * @return
 	 */
-	String[] whitelist();
+	String[] whitelist() default { "createDate", "lastModifiedDate" };
 
 }
