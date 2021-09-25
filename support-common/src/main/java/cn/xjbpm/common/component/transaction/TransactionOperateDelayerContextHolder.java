@@ -1,6 +1,7 @@
 package cn.xjbpm.common.component.transaction;
 
 import cn.hutool.core.util.StrUtil;
+import cn.xjbpm.common.function.Invoke;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class TransactionOperateDelayerContextHolder {
 	/***
 	 * 事务线程对应延迟操作事件绑定
 	 */
-	private static final ThreadLocal<Map<String, BlockingQueue<CallableEvent>>> AFTER_TRANSACTION_OPTS_THREAD_LOCAL = new NamedThreadLocal<>(
+	private static final ThreadLocal<Map<String, BlockingQueue<Invoke>>> AFTER_TRANSACTION_OPTS_THREAD_LOCAL = new NamedThreadLocal<>(
 			"事务交易成功后执行操作");
 
 	/**
@@ -46,12 +47,12 @@ public class TransactionOperateDelayerContextHolder {
 	 * 事务提交成功后执行
 	 * @param executable
 	 */
-	public static void executeAfterTransactionCommit(CallableEvent executable) {
+	public static void executeAfterTransactionCommit(Invoke executable) {
 		if (TransactionSynchronizationManager.isSynchronizationActive()
 				&& TransactionSynchronizationManager.isActualTransactionActive()) {
 			// 当前操作在活跃的事务中
 			TransactionSynchronizationManager.registerSynchronization(AfterTransactionSynchronizationAdapter.INSTANCE);
-			BlockingQueue<CallableEvent> eventExecutables = getExecutablesCreateIfNecessary();
+			BlockingQueue<Invoke> eventExecutables = getExecutablesCreateIfNecessary();
 			eventExecutables.add(executable);
 		}
 		else {
@@ -63,14 +64,14 @@ public class TransactionOperateDelayerContextHolder {
 	 * 从threadlocal获取执行器栈,如果没有拿到,就创建一个 要根据事务名称区分事务
 	 * @return
 	 */
-	private static BlockingQueue<CallableEvent> getExecutablesCreateIfNecessary() {
-		Map<String, BlockingQueue<CallableEvent>> eventExecutableMap = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
+	private static BlockingQueue<Invoke> getExecutablesCreateIfNecessary() {
+		Map<String, BlockingQueue<Invoke>> eventExecutableMap = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
 		String transactionName = getTransactionName();
 		if (eventExecutableMap == null) {
 			eventExecutableMap = new HashMap<>(10);
 			AFTER_TRANSACTION_OPTS_THREAD_LOCAL.set(eventExecutableMap);
 		}
-		BlockingQueue<CallableEvent> executables = eventExecutableMap.get(transactionName);
+		BlockingQueue<Invoke> executables = eventExecutableMap.get(transactionName);
 		if (executables == null) {
 			executables = new LinkedBlockingQueue<>();
 			eventExecutableMap.put(transactionName, executables);
@@ -95,7 +96,7 @@ public class TransactionOperateDelayerContextHolder {
 		 */
 		@Override
 		public void afterCompletion(int status) {
-			Map<String, BlockingQueue<CallableEvent>> map = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
+			Map<String, BlockingQueue<Invoke>> map = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
 			if (map != null) {
 				map.remove(getTransactionName());
 			}
@@ -106,15 +107,15 @@ public class TransactionOperateDelayerContextHolder {
 		 */
 		@Override
 		public void afterCommit() {
-			Map<String, BlockingQueue<CallableEvent>> BlockingQueueMap = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
+			Map<String, BlockingQueue<Invoke>> BlockingQueueMap = AFTER_TRANSACTION_OPTS_THREAD_LOCAL.get();
 			String transactionName = getTransactionName();
-			BlockingQueue<CallableEvent> eventExecutables = BlockingQueueMap.get(transactionName);
+			BlockingQueue<Invoke> eventExecutables = BlockingQueueMap.get(transactionName);
 			if (Objects.nonNull(eventExecutables) && !eventExecutables.isEmpty()) {
 				while (!eventExecutables.isEmpty()) {
-					CallableEvent eventExecutable = eventExecutables.poll();
+					Invoke eventExecutable = eventExecutables.poll();
 					if (Objects.nonNull(eventExecutable)) {
 						try {
-							eventExecutable.exec();
+							eventExecutable.execute();
 						}
 						catch (Throwable e) {
 							log.error("执行事务后置操作出错, transactionName={}, msg={}", transactionName, e.getMessage(), e);

@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @author 黄川 huchuc@vip.qq.com
  */
 @UtilityClass
-public class Lang {
+public class IpUtil {
 
 	private static final Pattern IPV4_PATTERN = Pattern
 			.compile("^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$");
@@ -79,7 +79,7 @@ public class Lang {
 		if (StrUtil.isBlank(ip)) {
 			return "";
 		}
-		if (Lang.isIPv4Address(ip) || Lang.isIPv6Address(ip)) {
+		if (IpUtil.isIPv4Address(ip) || IpUtil.isIPv6Address(ip)) {
 			return ip;
 		}
 		return "";

@@ -73,9 +73,9 @@ public class RequestContextUtil {
 	 * 取得IP地址
 	 * @return
 	 */
-	public static String getIp() {
+	public static String getIpByReuqestHeader() {
 		Optional<HttpServletRequest> currentRequest = getCurrentRequest();
-		return Lang.getIP(currentRequest.orElse(null));
+		return IpUtil.getIP(currentRequest.orElse(null));
 	}
 
 }
