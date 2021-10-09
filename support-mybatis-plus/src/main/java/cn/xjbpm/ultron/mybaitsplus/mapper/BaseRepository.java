@@ -41,6 +41,7 @@ public class BaseRepository<Mapper extends com.baomidou.mybatisplus.core.mapper.
 	}
 
 	/**
+	 * 获取一个对象
 	 * @param id
 	 * @return
 	 */

@@ -18,16 +18,27 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class GlobalAssignIdentifierGenerator implements IdentifierGenerator {
+    /**
+     * 生产一个Number类型的全局ID
+     *
+     * @param entity
+     * @return
+     */
+    @Override
+    public Number nextId(Object entity) {
+        return GlobalIdServiceUtil.nextLongId();
+    }
 
-	@Override
-	public Number nextId(Object entity) {
-		return GlobalIdServiceUtil.nextLongId();
-	}
-
-	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
-	@Override
-	public String nextUUID(Object entity) {
-		return GlobalIdServiceUtil.nextStringId();
-	}
+    /**
+     * 生产一个字符串的全局ID
+     *
+     * @param entity
+     * @return
+     */
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    @Override
+    public String nextUUID(Object entity) {
+        return GlobalIdServiceUtil.nextStringId();
+    }
 
 }

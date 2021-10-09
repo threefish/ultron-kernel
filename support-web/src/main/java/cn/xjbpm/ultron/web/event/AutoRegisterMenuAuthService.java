@@ -76,7 +76,7 @@ public class AutoRegisterMenuAuthService {
 							String.format("菜单 CustomizeId 不能为空：%s", handlerMethod.getShortLogMessage()));
 					Assert.hasText(menuVO.getName(), String.format("菜单名称不能为空：%s", handlerMethod.getShortLogMessage()));
 					Assert.isTrue(!hashMap.containsKey(menuVO.getCustomizeId()),
-							String.format("\"%s\"菜单自定义ID不能出现重复：%s %s", menuVO.getName(), menuVO.getCustomizeId(),
+							String.format("[%s]菜单自定义ID不能出现重复：%s %s", menuVO.getName(), menuVO.getCustomizeId(),
 									handlerMethod.getShortLogMessage()));
 					hashMap.put(menuVO.getCustomizeId(), menuVO);
 				}
@@ -97,7 +97,7 @@ public class AutoRegisterMenuAuthService {
 				menuVO.setRequestMappingPath(getClassRequestMappingPath(beanClass));
 				Assert.hasText(menuVO.getCustomizeId(), String.format("类上绑定的菜单 -> CustomizeId 不能为空：%s", beanClass));
 				Assert.hasText(menuVO.getName(), String.format("类上绑定的菜单 -> 菜单名称不能为空：%s", beanClass));
-				Assert.isTrue(!hashMap.containsKey(menuVO.getCustomizeId()), String.format("\"%s\"菜单自定义ID不能出现重复：%s %s",
+				Assert.isTrue(!hashMap.containsKey(menuVO.getCustomizeId()), String.format("[%s]菜单自定义ID不能出现重复：%s %s",
 						menuVO.getName(), menuVO.getCustomizeId(), beanClass));
 				hashMap.put(menuVO.getCustomizeId(), menuVO);
 			}
