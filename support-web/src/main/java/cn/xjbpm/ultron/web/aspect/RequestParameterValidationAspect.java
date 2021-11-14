@@ -31,8 +31,12 @@ import java.util.*;
 @Component
 public class RequestParameterValidationAspect {
 
-	@Autowired
 	private LocalValidatorFactoryBean localValidatorFactoryBean;
+
+	@Autowired
+	public void setLocalValidatorFactoryBean(LocalValidatorFactoryBean localValidatorFactoryBean) {
+		this.localValidatorFactoryBean = localValidatorFactoryBean;
+	}
 
 	public RequestParameterValidationAspect() {
 		log.info("init RequestParameterValidationAspect");

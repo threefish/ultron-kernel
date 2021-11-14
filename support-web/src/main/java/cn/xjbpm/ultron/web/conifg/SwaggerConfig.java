@@ -68,8 +68,8 @@ public class SwaggerConfig {
 	 * @return
 	 */
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title(applicationName + "  Swagger3-接口文档").description("技术支持:18502878732")
-				.contact(new Contact("18502878732", "https://gitee.com/threefish", "huchuc@vip.qq.com")).version("1.0")
+		return new ApiInfoBuilder().title(applicationName + "  Swagger3-接口文档").description("技术支持:huchuc@vip.qq.com")
+				.contact(new Contact("黄川", "https://gitee.com/threefish", "huchuc@vip.qq.com")).version("1.0")
 				.build();
 	}
 
