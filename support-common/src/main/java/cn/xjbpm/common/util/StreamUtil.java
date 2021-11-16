@@ -10,16 +10,15 @@ import java.util.function.Predicate;
  */
 public class StreamUtil {
 
-    /**
-     * 去重
-     * https://stackoverflow.com/questions/23699371/java-8-distinct-by-property
-     *
-     * @param keyExtractor
-     * @param <T>
-     * @return
-     */
-    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-        Set<Object> seen = ConcurrentHashMap.newKeySet();
-        return t -> seen.add(keyExtractor.apply(t));
-    }
+	/**
+	 * 去重 https://stackoverflow.com/questions/23699371/java-8-distinct-by-property
+	 * @param keyExtractor
+	 * @param <T>
+	 * @return
+	 */
+	public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+		Set<Object> seen = ConcurrentHashMap.newKeySet();
+		return t -> seen.add(keyExtractor.apply(t));
+	}
+
 }
