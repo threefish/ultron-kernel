@@ -3,7 +3,6 @@ package cn.xjbpm.ultron.web;
 import cn.xjbpm.common.util.ApplicationWebPathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextClosedEvent;
@@ -18,7 +17,7 @@ import org.springframework.context.event.EventListener;
 public class MvcServerAutoConfig {
 
 	public MvcServerAutoConfig() {
-		log.info("web-mvc initialize");
+		log.info("support-web initialize");
 	}
 
 	@EventListener(ApplicationReadyEvent.class)

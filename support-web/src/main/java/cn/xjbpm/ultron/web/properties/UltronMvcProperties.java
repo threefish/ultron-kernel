@@ -31,6 +31,11 @@ public class UltronMvcProperties {
 	private Xss xss = new Xss();
 
 	/**
+	 * Swagger 配置
+	 */
+	private Swagger swagger = new Swagger();
+
+	/**
 	 * web接口安全
 	 */
 	private Boolean webApiSecurity = true;
@@ -47,6 +52,46 @@ public class UltronMvcProperties {
 		 * 排除的url规则
 		 */
 		List<String> excludes = new ArrayList<>();
+
+	}
+
+	@Data
+	public class Swagger {
+
+		/**
+		 * 设置要暴漏接口文档的配置环境
+		 */
+		List<String> profiles = new ArrayList<>();
+
+		/**
+		 * 项目文档标题
+		 */
+		String title;
+
+		/**
+		 * 项目文档描述
+		 */
+		String description;
+
+		/**
+		 * 版本号
+		 */
+		String version;
+
+		/**
+		 * 联系人姓名
+		 */
+		String contactName;
+
+		/**
+		 * 联系网址
+		 */
+		String contactUrl;
+
+		/**
+		 * 联系邮件
+		 */
+		String contactEmail;
 
 	}
 

@@ -23,7 +23,7 @@ import java.util.Optional;
 @Component
 public class AuthenticationAspect {
 
-	@Pointcut("@within(cn.xjbpm.ultron.web.annotation.ManageApi) || @within(cn.xjbpm.ultron.web.annotation.MobileApi)")
+	@Pointcut("@within(cn.xjbpm.ultron.web.annotation.ManageApi) || @within(cn.xjbpm.ultron.web.annotation.AppApi)")
 	public void controller() {
 	}
 

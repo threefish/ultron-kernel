@@ -17,8 +17,7 @@ public class GenerateMenuUtil {
 			return Collections.emptyMap();
 		}
 		Map<String, Object> ctx = new HashMap<>(10);
-		ctx.put("el_prefix", generateMenuGroup.el_prefix());
-		ctx.put("el_name_prefix", generateMenuGroup.el_name_prefix());
+		ctx.put("args", generateMenuGroup.args());
 		return ctx;
 	}
 

@@ -8,8 +8,11 @@
 
 package cn.xjbpm.ultron.web.conifg;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.xjbpm.ultron.web.constant.ConstantAuthoriztion;
+import cn.xjbpm.ultron.web.properties.UltronMvcProperties;
 import io.swagger.annotations.Api;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,21 +33,26 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
  */
 @Configuration
 @EnableOpenApi
+@RequiredArgsConstructor
 public class SwaggerConfig {
+
+	private final UltronMvcProperties ultronMvcProperties;
 
 	@Value("${spring.application.name:Ultron}")
 	private String applicationName;
 
 	@Bean
 	public Docket initDocket(Environment env) {
-		// 设置要暴漏接口文档的配置环境
-		Profiles profile = Profiles.of("dev", "test");
+		final UltronMvcProperties.Swagger swagger = ultronMvcProperties.getSwagger();
+		Profiles profile = CollUtil.isEmpty(swagger.getProfiles()) ? Profiles.of("dev")
+				: Profiles.of(swagger.getProfiles().toArray(new String[0]));
 		boolean flag = env.acceptsProfiles(profile);
 		return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo()).enable(flag).select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(Api.class)).paths(PathSelectors.any()).build()
@@ -68,8 +76,12 @@ public class SwaggerConfig {
 	 * @return
 	 */
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title(applicationName + "  Swagger3-接口文档").description("技术支持:huchuc@vip.qq.com")
-				.contact(new Contact("黄川", "https://gitee.com/threefish", "huchuc@vip.qq.com")).version("1.0").build();
+		final UltronMvcProperties.Swagger swagger = ultronMvcProperties.getSwagger();
+		return new ApiInfoBuilder()
+				.title(Optional.ofNullable(swagger.getTitle()).orElse(applicationName + "  Swagger3-接口文档"))
+				.description(swagger.getDescription())
+				.contact(new Contact(swagger.getContactName(), swagger.getContactUrl(), swagger.getContactEmail()))
+				.version(swagger.getVersion()).build();
 	}
 
 }

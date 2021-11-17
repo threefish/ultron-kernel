@@ -30,9 +30,9 @@ public class CommonController<Service extends CommonService<ID, VO, PageVO>, ID 
 
 	@ApiOperation("保存对象")
 	@PostMapping("/save")
-	@GenerateMenu(name = "保存对象", type = MenuType.RESOURCE, customizeId = "#{el_prefix}_save",
-			parentCustomizeId = "#{el_prefix}_manage")
-	@SecurityPermissions("#{el_prefix}_save")
+	@GenerateMenu(name = "保存对象", type = MenuType.RESOURCE, customizeId = "#{args[0]}_save",
+			parentCustomizeId = "#{args[0]}_manage")
+	@SecurityPermissions("#{args[0]}_save")
 	@NoRepeatSubmit
 	@CacheEvict(key = "#vo.id", condition = "#vo.id != null", cacheResolver = CommonCacheResolver.BEAN_NAME)
 	public boolean save(@RequestBody VO vo) {
@@ -41,9 +41,9 @@ public class CommonController<Service extends CommonService<ID, VO, PageVO>, ID 
 
 	@ApiOperation("获取对象信息")
 	@PostMapping("/get")
-	@GenerateMenu(name = "获取对象信息", type = MenuType.RESOURCE, customizeId = "#{el_prefix}_get",
-			parentCustomizeId = "#{el_prefix}_manage")
-	@SecurityPermissions("#{el_prefix}_get")
+	@GenerateMenu(name = "获取对象信息", type = MenuType.RESOURCE, customizeId = "#{args[0]}_get",
+			parentCustomizeId = "#{args[0]}_manage")
+	@SecurityPermissions("#{args[0]}_get")
 	@Cacheable(key = "#id", cacheResolver = CommonCacheResolver.BEAN_NAME)
 	public VO get(@NotNull(message = "主键ID不允许为空") @RequestParam ID id) {
 		return service.findById(id);
@@ -51,9 +51,9 @@ public class CommonController<Service extends CommonService<ID, VO, PageVO>, ID 
 
 	@ApiOperation("删除对象信息")
 	@PostMapping("/deleteById")
-	@GenerateMenu(name = "删除对象信息", type = MenuType.RESOURCE, customizeId = "#{el_prefix}_delete",
-			parentCustomizeId = "#{el_prefix}_manage")
-	@SecurityPermissions("#{el_prefix}_delete")
+	@GenerateMenu(name = "删除对象信息", type = MenuType.RESOURCE, customizeId = "#{args[0]}_delete",
+			parentCustomizeId = "#{args[0]}_manage")
+	@SecurityPermissions("#{args[0]}_delete")
 	@CacheEvict(key = "#id", cacheResolver = CommonCacheResolver.BEAN_NAME)
 	public boolean deleteById(@NotNull(message = "主键ID不允许为空") @RequestParam ID id) {
 		return service.deleteById(id);
@@ -61,9 +61,9 @@ public class CommonController<Service extends CommonService<ID, VO, PageVO>, ID 
 
 	@ApiOperation("分页查询对象信息")
 	@PostMapping("/listByPageQuery")
-	@GenerateMenu(name = "分页查询对象信息", type = MenuType.RESOURCE, customizeId = "#{el_prefix}_list_by_page_query",
-			parentCustomizeId = "#{el_prefix}_manage")
-	@SecurityPermissions("#{el_prefix}_list_by_page_query")
+	@GenerateMenu(name = "分页查询对象信息", type = MenuType.RESOURCE, customizeId = "#{args[0]}_list_by_page_query",
+			parentCustomizeId = "#{args[0]}_manage")
+	@SecurityPermissions("#{args[0]}_list_by_page_query")
 	public PageRespVO<Iterable<VO>> listByPageQuery(@RequestBody PageVO pageVO) {
 		return service.listByPageQuery(pageVO);
 	}

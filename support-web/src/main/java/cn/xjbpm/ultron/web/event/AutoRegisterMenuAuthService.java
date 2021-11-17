@@ -126,7 +126,7 @@ public class AutoRegisterMenuAuthService {
 				: "";
 		final String value = SpELUtil.parseValueToString(context, expression);
 		if (log.isTraceEnabled()) {
-			log.trace("获取菜单唯一ID -> 表达式:\"{}\" 计算后：\"{}\" 上下文:\"{}\"", expression, value, JsonUtil.obj2Json(context));
+			log.trace("获取菜单唯一ID -> 表达式:'{}' 计算后：'{}' 上下文:'{}'", expression, value, JsonUtil.obj2Json(context));
 		}
 		return value;
 	}
@@ -141,7 +141,7 @@ public class AutoRegisterMenuAuthService {
 				? methodGenerateMenu.parentCustomizeId() : "";
 		final String value = SpELUtil.parseValueToString(context, expression);
 		if (log.isTraceEnabled()) {
-			log.trace("获取菜单唯一ID -> 表达式:\"{}\" 计算后：\"{}\" 上下文:\"{}\"", expression, value, JsonUtil.obj2Json(context));
+			log.trace("获取菜单唯一ID -> 表达式:'{}' 计算后：'{}' 上下文:'{}'", expression, value, JsonUtil.obj2Json(context));
 		}
 		return value;
 	}
@@ -160,7 +160,7 @@ public class AutoRegisterMenuAuthService {
 		}
 		final String value = SpELUtil.parseValueToString(context, expression);
 		if (log.isTraceEnabled()) {
-			log.trace("获取权限字符串 -> 表达式:\"{}\" 计算后：\"{}\" 上下文:\"{}\"", expression, value, JsonUtil.obj2Json(context));
+			log.trace("获取权限字符串 -> 表达式:'{}' 计算后：'{}' 上下文:'{}'", expression, value, JsonUtil.obj2Json(context));
 		}
 		return value;
 	}
@@ -174,7 +174,7 @@ public class AutoRegisterMenuAuthService {
 		String expression = StrUtil.isNotBlank(methodGenerateMenu.name()) ? methodGenerateMenu.name() : "";
 		final String value = SpELUtil.parseValueToString(context, expression);
 		if (log.isTraceEnabled()) {
-			log.trace("获取菜单名称 -> 表达式:\"{}\" 计算后：\"{}\" 上下文:\"{}\"", expression, value, JsonUtil.obj2Json(context));
+			log.trace("获取菜单名称 -> 表达式:'{}' 计算后：'{}' 上下文:'{}'", expression, value, JsonUtil.obj2Json(context));
 		}
 		return value;
 	}

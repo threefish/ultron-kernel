@@ -45,7 +45,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <ultron.version>1.0.0-SNAPSHOT</ultron.version>
-        <spring-javaformat-checkstyle.version>0.0.28</spring-javaformat-checkstyle.version>
+        <spring-javaformat-checkstyle.version>0.0.29</spring-javaformat-checkstyle.version>
     </properties>
 
 

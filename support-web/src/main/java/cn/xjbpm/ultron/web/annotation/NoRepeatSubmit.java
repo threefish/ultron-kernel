@@ -3,7 +3,7 @@ package cn.xjbpm.ultron.web.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author 黄川 huchuc@vip.qq.com 自定义注解防止表单重复提交
+ * @author 黄川 huchuc@vip.qq.com 防止表单重复提交
  */
 @Inherited
 @Target(ElementType.METHOD)

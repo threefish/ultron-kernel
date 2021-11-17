@@ -13,16 +13,10 @@ import java.lang.annotation.Target;
 public @interface GenerateMenuGroup {
 
 	/**
-	 * customizeId 前缀 ，会影响使用el表达式的 GenerateMenu 和 SecurityPermissions 注解
+	 * el变量
 	 * @return
 	 */
-	String el_prefix();
-
-	/**
-	 * 名称前缀
-	 * @return
-	 */
-	String el_name_prefix();
+	String[] args();
 
 	/**
 	 * 不方便创建的菜单放这里来

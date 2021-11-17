@@ -55,10 +55,4 @@ public @interface GenerateMenu {
 	 */
 	String permissions() default "";
 
-	/**
-	 * 菜单排序
-	 * @return
-	 */
-	int shortNo() default 0;
-
 }

@@ -53,11 +53,11 @@ public class SecurityPermissionsAspect {
 				List<String> value = Stream.of(securityPermissions.value())
 						.map(permission -> SpELUtil.parseValueToString(stringObjectMap, permission))
 						.collect(Collectors.toList());
-				boolean hasPermissions;
+				boolean hasPermissions = false;
 				if (securityPermissions.logic() == SecurityPermissions.Logic.OR) {
 					hasPermissions = value.stream().anyMatch(operator.getPermissions()::contains);
 				}
-				else {
+				else if (securityPermissions.logic() == SecurityPermissions.Logic.AND) {
 					hasPermissions = value.stream().allMatch(operator.getPermissions()::contains);
 				}
 				if (hasPermissions) {
