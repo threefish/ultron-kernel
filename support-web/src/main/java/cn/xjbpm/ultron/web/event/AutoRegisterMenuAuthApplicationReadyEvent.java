@@ -32,7 +32,7 @@ import java.util.*;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AutoRegisterMenuAuthService {
+public class AutoRegisterMenuAuthApplicationReadyEvent {
 
 	private static volatile HashMap<String, AutoMenuAuthDTO> hashMap = MapUtil.newHashMap();
 

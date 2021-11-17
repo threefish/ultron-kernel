@@ -42,6 +42,77 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-common</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-captcha</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-echo</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-groovy</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-id-generator</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-job</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-jpa</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-log</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-mybatis-plus</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-oss</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-redis</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-rocketmq</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-web</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xjbpm</groupId>
+                <artifactId>support-webservice</artifactId>
+                <version>${ultron.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>

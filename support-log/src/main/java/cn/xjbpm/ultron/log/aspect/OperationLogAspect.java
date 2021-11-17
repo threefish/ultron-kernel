@@ -10,7 +10,6 @@ import cn.xjbpm.ultron.log.annotation.OperationLog;
 import cn.xjbpm.ultron.log.event.OperationLogEvent;
 import cn.xjbpm.ultron.log.model.OperationLogModel;
 import cn.xjbpm.ultron.web.constant.LogConstants;
-import cn.xjbpm.ultron.web.filter.RequestRepeatableWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -38,6 +37,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OperationLogAspect {
 
+	/**
+	 * 可重复读的请求对象包装类
+	 */
+	private static final String REQUEST_REPEATABLE_WRAPPER_CLAZZ_NAME = "cn.xjbpm.ultron.web.filter.RequestRepeatableWrapper";
+
 	@Pointcut("@annotation(operationLog)")
 	public void pointCut(OperationLog operationLog) {
 	}
@@ -57,7 +61,7 @@ public class OperationLogAspect {
 				currentRequest.ifPresent(httpServletRequest -> {
 					operationLogModel.setRequestUrl(String.format("[%s] %s", httpServletRequest.getMethod(),
 							httpServletRequest.getRequestURI()));
-					if (httpServletRequest instanceof RequestRepeatableWrapper) {
+					if (REQUEST_REPEATABLE_WRAPPER_CLAZZ_NAME.equals(httpServletRequest.getClass().getName())) {
 						if (RequestContextUtil.isJsonRequest()) {
 							try {
 								operationLogModel.setRequestData(IOUtils.toString(httpServletRequest.getInputStream(),

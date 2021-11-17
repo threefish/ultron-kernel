@@ -21,7 +21,6 @@
         <dependency>
             <groupId>cn.xjbpm</groupId>
             <artifactId>support-web</artifactId>
-            <version>${ultron.version}</version>
         </dependency>
         <!--    webservice 集成   -->
         <dependency>

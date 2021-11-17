@@ -21,7 +21,6 @@
         <dependency>
             <groupId>cn.xjbpm</groupId>
             <artifactId>support-common</artifactId>
-            <version>${ultron.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

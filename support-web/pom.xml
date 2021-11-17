@@ -21,12 +21,10 @@
         <dependency>
             <groupId>cn.xjbpm</groupId>
             <artifactId>support-common</artifactId>
-            <version>${ultron.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.xjbpm</groupId>
             <artifactId>support-redis</artifactId>
-            <version>${ultron.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
