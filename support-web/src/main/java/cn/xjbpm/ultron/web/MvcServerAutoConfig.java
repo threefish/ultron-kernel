@@ -22,7 +22,7 @@ public class MvcServerAutoConfig {
 	}
 
 	@EventListener(ApplicationReadyEvent.class)
-	public void applicationReadyEvent(ApplicationEvent event) {
+	public void applicationReadyEvent() {
 		String appRootPathUrl = ApplicationWebPathUtil.getAppRootPathUrl();
 		log.info("######################################################");
 		log.info("                                                      ");
@@ -35,7 +35,7 @@ public class MvcServerAutoConfig {
 	}
 
 	@EventListener(ContextClosedEvent.class)
-	public void onFebsApplicationClosed(ApplicationEvent event) {
+	public void onFebsApplicationClosed() {
 		log.info("                                                      ");
 		log.info("######################################################");
 		log.info("                                                      ");
