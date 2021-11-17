@@ -9,7 +9,6 @@ import cn.xjbpm.common.util.spel.SpELUtil;
 import cn.xjbpm.ultron.log.annotation.OperationLog;
 import cn.xjbpm.ultron.log.event.OperationLogEvent;
 import cn.xjbpm.ultron.log.model.OperationLogModel;
-import cn.xjbpm.ultron.web.constant.LogConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -52,7 +51,7 @@ public class OperationLogAspect {
 		final StopWatch stopWatch = new StopWatch();
 		try {
 			operationLogModel.setSuccess(true);
-			operationLogModel.setTraceId(MDC.get(LogConstants.TRACE_ID));
+			operationLogModel.setTraceId(MDC.get("traceId"));
 			operationLogModel.setOperatorUserVO(LoginUserUtil.getOperator());
 			operationLogModel.setLogType(operationLog.logType());
 			operationLogModel.setOperateType(operationLog.operateType());
