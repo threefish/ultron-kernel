@@ -50,6 +50,7 @@ public class OperationLogAspect {
 		final OperationLogModel operationLogModel = new OperationLogModel();
 		final StopWatch stopWatch = new StopWatch();
 		try {
+			stopWatch.start();
 			operationLogModel.setSuccess(true);
 			operationLogModel.setTraceId(MDC.get("traceId"));
 			operationLogModel.setOperatorUserVO(LoginUserUtil.getOperator());
@@ -77,8 +78,8 @@ public class OperationLogAspect {
 			}
 			try {
 				final MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
-				final String value = SpELUtil.parseValueToString(proceedingJoinPoint.getTarget(), signature.getMethod(),
-						proceedingJoinPoint.getArgs(), operationLog.text());
+				final String value = SpELUtil.parseValueToString(signature.getMethod(), proceedingJoinPoint.getArgs(),
+						operationLog.spel());
 				operationLogModel.setText(value);
 			}
 			catch (Exception e) {

@@ -2,7 +2,6 @@ package cn.xjbpm.common.util.spel;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.context.expression.MapAccessor;
-import org.springframework.context.expression.MethodBasedEvaluationContext;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.expression.EvaluationContext;
@@ -18,6 +17,7 @@ import java.util.Map;
 /**
  * @author 黄川 huchuc@vip.qq.com
  */
+@SuppressWarnings("ALL")
 @UtilityClass
 public class SpELUtil {
 
@@ -32,15 +32,14 @@ public class SpELUtil {
 	public static final ParameterNameDiscoverer PARAMETER_NAME_DISCOVERER = new LocalVariableTableParameterNameDiscoverer();
 
 	/**
-	 * 支持 #p0 参数索引的表达式解析
-	 * @param rootObject 根对象,method 所在的对象
+	 * 计算
 	 * @param spEL 表达式
 	 * @param method 目标方法
 	 * @param args 方法入参
 	 * @return 解析后的字符串
 	 */
-	public static String parseValueToString(Object rootObject, Method method, Object[] args, String spEL) {
-		EvaluationContext context = getMethodContext(rootObject, method, args);
+	public static String parseValueToString(Method method, Object[] args, String spEL) {
+		EvaluationContext context = getMethodContext(method, args);
 		return parseValueToString(context, spEL);
 	}
 
@@ -97,22 +96,18 @@ public class SpELUtil {
 
 	/**
 	 * 构建上下文
-	 * @param rootObject
 	 * @param method
 	 * @param args
 	 * @return
 	 */
-	public static StandardEvaluationContext getMethodContext(Object rootObject, Method method, Object[] args) {
+	public static StandardEvaluationContext getMethodContext(Method method, Object[] args) {
 		String[] paraNameArr = PARAMETER_NAME_DISCOVERER.getParameterNames(method);
-		// SPEL 上下文
-		StandardEvaluationContext context = new MethodBasedEvaluationContext(rootObject, method, args,
-				PARAMETER_NAME_DISCOVERER);
+		Map<String, Object> context = new HashMap<>();
 		// 把方法参数放入 SPEL 上下文中
 		for (int i = 0; i < paraNameArr.length; i++) {
-			context.setVariable(paraNameArr[i], args[i]);
+			context.put(paraNameArr[i], args[i]);
 		}
-		context.addPropertyAccessor(new MapAccessor());
-		return context;
+		return getMapContext(context);
 	}
 
 	/**

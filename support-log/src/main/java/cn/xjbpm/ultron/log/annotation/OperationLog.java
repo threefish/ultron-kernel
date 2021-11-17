@@ -34,7 +34,7 @@ public @interface OperationLog {
 	 * 日志内容，可使用el表达式计算
 	 * @return
 	 */
-	String text() default "";
+	String spel() default "";
 
 	/**
 	 * 记录请求数据
