@@ -12,12 +12,14 @@ import cn.hutool.core.util.StrUtil;
 import cn.xjbpm.common.exception.BusinessSilenceException;
 import cn.xjbpm.common.exception.CommonExceptionEnum;
 import cn.xjbpm.common.exception.HttpStatusExceptionEnum;
+import cn.xjbpm.common.util.RequestContextUtil;
 import cn.xjbpm.common.vo.JsonResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,7 +28,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentConversionNotSupportedException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
@@ -94,6 +98,23 @@ public class GlobalExceptionAdvice {
 	public JsonResultVO exceptionHandler(DuplicateKeyException ex) {
 		if (log.isDebugEnabled()) {
 			log.debug("唯一约束引起的异常: {}", ex);
+		}
+		return JsonResultVO.failed(CommonExceptionEnum.DATA_DUPLICATION);
+	}
+
+	/**
+	 * 不支持的web方法请求
+	 * @param ex
+	 * @return
+	 */
+	@ResponseBody
+	@ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+	public JsonResultVO exceptionHandler(HttpRequestMethodNotSupportedException ex) {
+		StringBuilder sb = new StringBuilder();
+		Optional<HttpServletRequest> currentRequest = RequestContextUtil.getCurrentRequest();
+		currentRequest.ifPresent(request -> sb.append(String.format("当前URL: %s", request.getRequestURI())));
+		if (log.isWarnEnabled()) {
+			log.warn("你的设置存在问题!!! {} 当前url支持请求方式为:{} 当前接收到的请求方式: {}", sb, ex.getSupportedMethods(), ex.getMethod());
 		}
 		return JsonResultVO.failed(CommonExceptionEnum.DATA_DUPLICATION);
 	}
