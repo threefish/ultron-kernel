@@ -5,6 +5,7 @@ package cn.xjbpm.common.convert;
  */
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author 黄川 huchuc@vip.qq.com 2021/2/16
@@ -33,13 +34,27 @@ public interface BaseConvert<VO, DO> {
 	 * @param vos
 	 * @return
 	 */
-	Collection<DO> voToDo(Iterable<VO> vos);
+	Collection<DO> voToDo(Collection<VO> vos);
+
+	/**
+	 * vo集合转do集合
+	 * @param vos
+	 * @return
+	 */
+	List<DO> voToDo(List<VO> vos);
 
 	/**
 	 * do集合转vo集合
 	 * @param entityList
 	 * @return
 	 */
-	Collection<VO> doToVo(Iterable<DO> entityList);
+	Collection<VO> doToVo(Collection<DO> entityList);
+
+	/**
+	 * do集合转vo集合
+	 * @param entityList
+	 * @return
+	 */
+	List<VO> doToVo(List<DO> entityList);
 
 }
