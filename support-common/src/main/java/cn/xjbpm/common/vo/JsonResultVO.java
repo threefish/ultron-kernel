@@ -90,6 +90,14 @@ public class JsonResultVO<T> implements Serializable {
 	}
 
 	/**
+	 * 失败返回结果
+	 * @param exceptionMessage 异常信息
+	 */
+	public static JsonResultVO failed(String exceptionMessage) {
+		return new JsonResultVO(HttpStatusExceptionEnum.SERVER_ERROR.getCode(), exceptionMessage);
+	}
+
+	/**
 	 * 是否成功
 	 * @return
 	 */

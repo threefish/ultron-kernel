@@ -31,6 +31,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
@@ -112,11 +113,13 @@ public class GlobalExceptionAdvice {
 	public JsonResultVO exceptionHandler(HttpRequestMethodNotSupportedException ex) {
 		StringBuilder sb = new StringBuilder();
 		Optional<HttpServletRequest> currentRequest = RequestContextUtil.getCurrentRequest();
-		currentRequest.ifPresent(request -> sb.append(String.format("当前URL: %s", request.getRequestURI())));
+		currentRequest.ifPresent(request -> sb.append(String.format("当前URL: %s ", request.getRequestURI())));
+		sb.append(String.format("当前url支持请求方式为:%s 当前接收到的请求方式:%s", StrUtil.join(",", ex.getSupportedMethods()),
+				ex.getMethod()));
 		if (log.isWarnEnabled()) {
-			log.warn("你的设置存在问题!!! {} 当前url支持请求方式为:{} 当前接收到的请求方式: {}", sb, ex.getSupportedMethods(), ex.getMethod());
+			log.warn("您的设置存在问题!!! {} ", sb);
 		}
-		return JsonResultVO.failed(CommonExceptionEnum.DATA_DUPLICATION);
+		return JsonResultVO.failed(sb.toString());
 	}
 
 	/**
