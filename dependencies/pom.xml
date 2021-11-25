@@ -396,17 +396,17 @@
         </resources>
     </build>
 
-    <!-- 配置远程发布到私服，mvn deploy -->
+    <!-- 配置远程发布，mvn deploy -->
     <distributionManagement>
+        <snapshotRepository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
         <repository>
-            <id>xjbpm-release</id>
-            <url>http://www.xjbpm.cn:8081/repository/maven-public/</url>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
             <uniqueVersion>true</uniqueVersion>
         </repository>
-        <snapshotRepository>
-            <id>xjbpm-snapshots</id>
-            <url>http://www.xjbpm.cn:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
     </distributionManagement>
 
 </project>

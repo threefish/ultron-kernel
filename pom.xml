@@ -11,6 +11,27 @@
     <name>ultron-kernel</name>
     <description>ultron核心包</description>
 
+    <url>https://Gitee.com/threefish</url>
+    <issueManagement>
+        <system>Gitee Issue</system>
+        <url>https://gitee.com/threefish/ultron-kernel/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <tag>master</tag>
+        <url>git@gitee.com:threefish/ultron-kernel.git</url>
+        <connection>scm:git:git@gitee.com:threefish/ultron-kernel.git</connection>
+        <developerConnection>scm:git:git@gitee.com:threefish/ultron-kernel.git</developerConnection>
+    </scm>
+
     <developers>
         <developer>
             <name>threefish</name>
@@ -85,6 +106,10 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
                 </configuration>
             </plugin>
             <plugin>
@@ -117,6 +142,18 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- sonatype提供了自动release的插件，这意味着运行mvn clean deploy后不用手动去close-> release了，此插件会自动release我们的项目到Maven中央仓库。 -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>oss</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -132,17 +169,20 @@
         </resources>
     </build>
 
-    <!-- 配置远程发布到私服，mvn deploy -->
+    <!-- 配置远程发布，mvn deploy -->
     <distributionManagement>
+        <snapshotRepository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
         <repository>
-            <id>xjbpm-release</id>
-            <url>http://www.xjbpm.cn:8081/repository/maven-public/</url>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
             <uniqueVersion>true</uniqueVersion>
         </repository>
-        <snapshotRepository>
-            <id>xjbpm-snapshots</id>
-            <url>http://www.xjbpm.cn:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
     </distributionManagement>
+
+
+
 
 </project>
