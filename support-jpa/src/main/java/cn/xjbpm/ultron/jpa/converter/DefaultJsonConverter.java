@@ -1,7 +1,7 @@
 package cn.xjbpm.ultron.jpa.converter;
 
 import cn.hutool.core.util.StrUtil;
-import cn.xjbpm.common.util.JsonUtil;
+import cn.xjbpm.ultron.common.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

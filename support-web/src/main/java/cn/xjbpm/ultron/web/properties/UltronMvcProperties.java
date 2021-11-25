@@ -16,9 +16,11 @@ import java.util.Map;
  */
 @Configuration
 @Slf4j
-@ConfigurationProperties(prefix = "ultron.mvc")
+@ConfigurationProperties(prefix = UltronMvcProperties.PREFIX)
 @Data
 public class UltronMvcProperties {
+
+	public static final String PREFIX = "ultron.mvc";
 
 	/**
 	 * 跨域配置

@@ -21,8 +21,10 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "ultron.tenant")
+@ConfigurationProperties(prefix = TenantProperties.PREFIX)
 public class TenantProperties {
+
+	public static final String PREFIX = "ultron.tenant";
 
 	/**
 	 * 是否开启租户模式

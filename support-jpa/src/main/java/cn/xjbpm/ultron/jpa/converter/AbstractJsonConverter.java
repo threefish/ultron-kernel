@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.jpa.converter;
 
-import cn.xjbpm.common.util.JsonUtil;
+import cn.xjbpm.ultron.common.util.JsonUtil;
 
 import javax.persistence.AttributeConverter;
 import java.io.Serializable;

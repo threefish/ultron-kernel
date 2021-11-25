@@ -1,6 +1,7 @@
 package cn.xjbpm.ultron.groovy.script;
 
 import cn.hutool.core.thread.ThreadUtil;
+import cn.xjbpm.ultron.groovy.constant.GroovyScriptCons;
 import cn.xjbpm.ultron.groovy.factory.GroovyFactory;
 import cn.xjbpm.ultron.groovy.properties.GroovyProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class GroovyScriptEngine extends ScriptFactoryPostProcessor implements InitializingBean {
 
 	protected static final Map<String, String> ALL_SCRIPT_BEANS = new ConcurrentHashMap<>();
-
-	private static final String LANGUAGE = "groovy";
 
 	protected final DefaultListableBeanFactory defaultListableBeanFactory;
 
@@ -57,7 +56,7 @@ public abstract class GroovyScriptEngine extends ScriptFactoryPostProcessor impl
 	/**
 	 * 扫描脚本
 	 */
-	protected abstract void scanScript();
+	protected abstract void scanScript() throws IOException;
 
 	/**
 	 * 注册脚本
@@ -70,7 +69,7 @@ public abstract class GroovyScriptEngine extends ScriptFactoryPostProcessor impl
 		BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(groovyClass)
 				.applyCustomizers(bd -> {
 					bd.setBeanClassName(GroovyScriptFactory.class.getName());
-					bd.setAttribute(ScriptFactoryPostProcessor.LANGUAGE_ATTRIBUTE, LANGUAGE);
+					bd.setAttribute(ScriptFactoryPostProcessor.LANGUAGE_ATTRIBUTE, GroovyScriptCons.LANGUAGE);
 					bd.setAttribute(ScriptFactoryPostProcessor.REFRESH_CHECK_DELAY_ATTRIBUTE,
 							groovyProperties.getRefreshCheckDelaySecond());
 					bd.setAutowireCandidate(true);
@@ -94,7 +93,7 @@ public abstract class GroovyScriptEngine extends ScriptFactoryPostProcessor impl
 		BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(groovyClass)
 				.applyCustomizers(bd -> {
 					bd.setBeanClassName(GroovyScriptFactory.class.getName());
-					bd.setAttribute(ScriptFactoryPostProcessor.LANGUAGE_ATTRIBUTE, LANGUAGE);
+					bd.setAttribute(ScriptFactoryPostProcessor.LANGUAGE_ATTRIBUTE, GroovyScriptCons.LANGUAGE);
 					bd.setAttribute(ScriptFactoryPostProcessor.REFRESH_CHECK_DELAY_ATTRIBUTE,
 							groovyProperties.getRefreshCheckDelaySecond());
 					bd.setAutowireCandidate(true);

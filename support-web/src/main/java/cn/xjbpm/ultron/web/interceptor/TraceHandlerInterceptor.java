@@ -1,8 +1,8 @@
 package cn.xjbpm.ultron.web.interceptor;
 
 import cn.hutool.core.util.StrUtil;
-import cn.xjbpm.common.util.LoginUserUtil;
-import cn.xjbpm.common.vo.OperatorUserVO;
+import cn.xjbpm.ultron.common.util.LoginUserUtil;
+import cn.xjbpm.ultron.common.vo.OperatorUserVO;
 import cn.xjbpm.ultron.web.constant.LogConstants;
 import cn.xjbpm.ultron.web.trace.TraceManager;
 import org.slf4j.MDC;

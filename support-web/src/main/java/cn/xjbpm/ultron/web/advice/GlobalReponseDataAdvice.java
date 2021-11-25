@@ -1,8 +1,8 @@
 package cn.xjbpm.ultron.web.advice;
 
 import cn.hutool.core.util.BooleanUtil;
-import cn.xjbpm.common.vo.JsonResultVO;
-import cn.xjbpm.common.vo.PageRespVO;
+import cn.xjbpm.ultron.common.vo.JsonResultVO;
+import cn.xjbpm.ultron.common.vo.PageRespVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;

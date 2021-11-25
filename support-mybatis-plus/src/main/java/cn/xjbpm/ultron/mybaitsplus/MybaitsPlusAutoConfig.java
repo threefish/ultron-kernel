@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.mybaitsplus;
 
-import cn.xjbpm.common.yaml.YamlPropertySourceFactory;
+import cn.xjbpm.ultron.common.yaml.YamlPropertySourceFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.captcha.exception;
 
-import cn.xjbpm.common.exception.ExceptionType;
+import cn.xjbpm.ultron.common.exception.ExceptionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -9,11 +9,11 @@
 package cn.xjbpm.ultron.mybaitsplus.expand.util;
 
 import cn.hutool.core.util.StrUtil;
-import cn.xjbpm.common.component.query.annotation.QueryField;
-import cn.xjbpm.common.component.query.annotation.QuerySorts;
-import cn.xjbpm.common.component.query.annotation.QueryType;
-import cn.xjbpm.common.vo.OrderByVO;
-import cn.xjbpm.common.vo.PageReqVO;
+import cn.xjbpm.ultron.common.component.query.annotation.QueryField;
+import cn.xjbpm.ultron.common.component.query.annotation.QuerySorts;
+import cn.xjbpm.ultron.common.component.query.annotation.QueryType;
+import cn.xjbpm.ultron.common.vo.OrderByVO;
+import cn.xjbpm.ultron.common.vo.PageReqVO;
 import cn.xjbpm.ultron.mybaitsplus.expand.criteria.Condition;
 import cn.xjbpm.ultron.mybaitsplus.expand.criteria.OperatorType;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;

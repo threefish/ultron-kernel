@@ -1,7 +1,7 @@
 package cn.xjbpm.ultron.jpa.converter;
 
-import cn.xjbpm.common.constant.CommonConstants;
-import cn.xjbpm.common.exception.BusinessSilenceException;
+import cn.xjbpm.ultron.common.constant.CommonConstants;
+import cn.xjbpm.ultron.common.exception.BusinessSilenceException;
 
 import javax.persistence.AttributeConverter;
 import java.io.UnsupportedEncodingException;

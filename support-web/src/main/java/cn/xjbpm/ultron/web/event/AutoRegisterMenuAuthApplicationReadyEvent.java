@@ -2,11 +2,11 @@ package cn.xjbpm.ultron.web.event;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.xjbpm.common.event.AutoMenuAuthDTO;
-import cn.xjbpm.common.event.AutoRegisterMenuEvent;
-import cn.xjbpm.common.util.BeanContextUtil;
-import cn.xjbpm.common.util.JsonUtil;
-import cn.xjbpm.common.util.spel.SpELUtil;
+import cn.xjbpm.ultron.common.event.AutoMenuAuthDTO;
+import cn.xjbpm.ultron.common.event.AutoRegisterMenuEvent;
+import cn.xjbpm.ultron.common.util.BeanContextUtil;
+import cn.xjbpm.ultron.common.util.JsonUtil;
+import cn.xjbpm.ultron.common.util.spel.SpELUtil;
 import cn.xjbpm.ultron.web.annotation.GenerateMenu;
 import cn.xjbpm.ultron.web.annotation.GenerateMenuGroup;
 import cn.xjbpm.ultron.web.annotation.SecurityPermissions;

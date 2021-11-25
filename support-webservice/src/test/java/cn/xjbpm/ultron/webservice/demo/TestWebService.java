@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.webservice.demo;
 
-import cn.xjbpm.common.vo.JsonResultVO;
+import cn.xjbpm.ultron.common.vo.JsonResultVO;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

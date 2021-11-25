@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.web.annotation;
 
-import cn.xjbpm.common.enums.MenuType;
+import cn.xjbpm.ultron.common.enums.MenuType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

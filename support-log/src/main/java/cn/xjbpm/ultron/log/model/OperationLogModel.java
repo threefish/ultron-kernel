@@ -1,8 +1,8 @@
 package cn.xjbpm.ultron.log.model;
 
-import cn.xjbpm.common.enums.LogType;
-import cn.xjbpm.common.enums.OperateType;
-import cn.xjbpm.common.vo.OperatorUserVO;
+import cn.xjbpm.ultron.common.enums.LogType;
+import cn.xjbpm.ultron.common.enums.OperateType;
+import cn.xjbpm.ultron.common.vo.OperatorUserVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

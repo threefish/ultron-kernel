@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.web;
 
-import cn.xjbpm.common.util.ApplicationWebPathUtil;
+import cn.xjbpm.ultron.common.util.ApplicationWebPathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.ComponentScan;

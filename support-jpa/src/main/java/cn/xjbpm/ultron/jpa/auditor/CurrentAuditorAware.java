@@ -1,7 +1,7 @@
 package cn.xjbpm.ultron.jpa.auditor;
 
-import cn.xjbpm.common.util.LoginUserUtil;
-import cn.xjbpm.common.vo.OperatorUserVO;
+import cn.xjbpm.ultron.common.util.LoginUserUtil;
+import cn.xjbpm.ultron.common.vo.OperatorUserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;

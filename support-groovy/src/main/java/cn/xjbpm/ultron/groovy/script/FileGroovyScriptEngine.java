@@ -1,5 +1,6 @@
 package cn.xjbpm.ultron.groovy.script;
 
+import cn.xjbpm.ultron.groovy.constant.GroovyScriptCons;
 import cn.xjbpm.ultron.groovy.properties.GroovyProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -10,6 +11,7 @@ import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,10 +23,6 @@ import java.util.stream.Collectors;
 @Component
 @ConditionalOnProperty(name = "groovy.script.dataBaseScriptSource", havingValue = "false")
 public class FileGroovyScriptEngine extends GroovyScriptEngine {
-
-	private static final String LANGUAGE = "groovy";
-
-	private static final String FILE_SUFFIX = ".groovy";
 
 	public FileGroovyScriptEngine(DefaultListableBeanFactory defaultListableBeanFactory,
 			GroovyProperties groovyProperties) {
@@ -40,11 +38,12 @@ public class FileGroovyScriptEngine extends GroovyScriptEngine {
 	 * 扫描脚本
 	 */
 	@Override
-	public void scanScript() {
-		String groovyDirectoryPath = GroovyScriptEngine.class.getClassLoader().getResource(LANGUAGE).getPath();
+	public void scanScript() throws IOException {
+		String groovyDirectoryPath = GroovyScriptEngine.class.getClassLoader().getResource(GroovyScriptCons.LANGUAGE)
+				.getPath();
 		File groovyDirectory = new File(groovyDirectoryPath);
 		if (groovyDirectory.isDirectory()) {
-			File[] groovyScript = groovyDirectory.listFiles((dir, name) -> name.endsWith(FILE_SUFFIX));
+			File[] groovyScript = groovyDirectory.listFiles((dir, name) -> name.endsWith(GroovyScriptCons.FILE_SUFFIX));
 			scanNewScriptAndAutoRegister(groovyScript);
 			scanDeleteScriptAndAutoRemove(groovyScript);
 		}
@@ -66,7 +65,7 @@ public class FileGroovyScriptEngine extends GroovyScriptEngine {
 					log.info("脚本{}已被移除", fileName);
 				}
 				catch (Exception e) {
-					log.info("扫描到移除脚本{}，但是移除失败", fileName, e);
+					log.info("扫描到移除脚本 {}，但是移除失败", fileName, e);
 				}
 			}
 		});
@@ -76,17 +75,18 @@ public class FileGroovyScriptEngine extends GroovyScriptEngine {
 	 * 检查新脚本并自动注册到容器里
 	 * @param scriptFiles
 	 */
-	private void scanNewScriptAndAutoRegister(File[] scriptFiles) {
+	private void scanNewScriptAndAutoRegister(File[] scriptFiles) throws IOException {
 		for (File script : scriptFiles) {
 			String scriptName = script.getName();
 			if (!ALL_SCRIPT_BEANS.containsKey(scriptName)) {
 				try {
 					String simpleBeanName = register(script);
 					ALL_SCRIPT_BEANS.put(scriptName, simpleBeanName);
-					log.info("脚本{}注册完成,文件路径:{}", script.getName(), script.getAbsolutePath());
+					log.info("脚本{}注册完成,文件路径 {}", script.getName(), script.getAbsolutePath());
 				}
 				catch (Exception e) {
 					log.info("扫描到新的脚本 {}，但是注册失败", script.getName(), e);
+					throw e;
 				}
 			}
 		}

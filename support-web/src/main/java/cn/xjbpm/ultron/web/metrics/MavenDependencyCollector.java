@@ -1,7 +1,7 @@
 package cn.xjbpm.ultron.web.metrics;
 
-import cn.xjbpm.common.util.maven.MavenDependencyUtil;
-import cn.xjbpm.common.util.maven.MavenDependencyVO;
+import cn.xjbpm.ultron.common.util.maven.MavenDependencyUtil;
+import cn.xjbpm.ultron.common.util.maven.MavenDependencyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

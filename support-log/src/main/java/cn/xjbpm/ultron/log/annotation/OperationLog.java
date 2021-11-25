@@ -1,7 +1,7 @@
 package cn.xjbpm.ultron.log.annotation;
 
-import cn.xjbpm.common.enums.LogType;
-import cn.xjbpm.common.enums.OperateType;
+import cn.xjbpm.ultron.common.enums.LogType;
+import cn.xjbpm.ultron.common.enums.OperateType;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

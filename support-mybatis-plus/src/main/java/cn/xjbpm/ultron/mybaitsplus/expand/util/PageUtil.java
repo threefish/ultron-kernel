@@ -8,7 +8,7 @@
 
 package cn.xjbpm.ultron.mybaitsplus.expand.util;
 
-import cn.xjbpm.common.vo.PageReqVO;
+import cn.xjbpm.ultron.common.vo.PageReqVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.experimental.UtilityClass;

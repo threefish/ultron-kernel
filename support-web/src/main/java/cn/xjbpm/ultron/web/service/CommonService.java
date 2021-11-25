@@ -1,8 +1,8 @@
 package cn.xjbpm.ultron.web.service;
 
-import cn.xjbpm.common.vo.BaseVO;
-import cn.xjbpm.common.vo.PageReqVO;
-import cn.xjbpm.common.vo.PageRespVO;
+import cn.xjbpm.ultron.common.vo.BaseVO;
+import cn.xjbpm.ultron.common.vo.PageReqVO;
+import cn.xjbpm.ultron.common.vo.PageRespVO;
 
 import java.io.Serializable;
 

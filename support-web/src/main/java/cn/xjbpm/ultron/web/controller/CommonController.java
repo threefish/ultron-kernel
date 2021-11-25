@@ -1,9 +1,9 @@
 package cn.xjbpm.ultron.web.controller;
 
-import cn.xjbpm.common.enums.MenuType;
-import cn.xjbpm.common.vo.BaseVO;
-import cn.xjbpm.common.vo.PageReqVO;
-import cn.xjbpm.common.vo.PageRespVO;
+import cn.xjbpm.ultron.common.enums.MenuType;
+import cn.xjbpm.ultron.common.vo.BaseVO;
+import cn.xjbpm.ultron.common.vo.PageReqVO;
+import cn.xjbpm.ultron.common.vo.PageRespVO;
 import cn.xjbpm.ultron.redis.cache.resolver.CommonCacheResolver;
 import cn.xjbpm.ultron.web.annotation.GenerateMenu;
 import cn.xjbpm.ultron.web.annotation.NoRepeatSubmit;

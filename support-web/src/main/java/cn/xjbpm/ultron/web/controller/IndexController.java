@@ -1,6 +1,6 @@
 package cn.xjbpm.ultron.web.controller;
 
-import cn.xjbpm.common.vo.JsonResultVO;
+import cn.xjbpm.ultron.common.vo.JsonResultVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

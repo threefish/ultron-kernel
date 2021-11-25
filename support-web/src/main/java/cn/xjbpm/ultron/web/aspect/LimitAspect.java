@@ -2,9 +2,9 @@ package cn.xjbpm.ultron.web.aspect;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.xjbpm.common.exception.BusinessSilenceException;
-import cn.xjbpm.common.exception.CommonExceptionEnum;
-import cn.xjbpm.common.util.RequestContextUtil;
+import cn.xjbpm.ultron.common.exception.BusinessSilenceException;
+import cn.xjbpm.ultron.common.exception.CommonExceptionEnum;
+import cn.xjbpm.ultron.common.util.RequestContextUtil;
 import cn.xjbpm.ultron.redis.util.RedisTemplateUtil;
 import cn.xjbpm.ultron.web.annotation.Limit;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static cn.xjbpm.common.constant.StringPool.COLON;
+import static cn.xjbpm.ultron.common.constant.StringPool.COLON;
 
 /**
  * @author 黄川 huchuc@vip.qq.com
